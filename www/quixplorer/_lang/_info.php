@@ -40,6 +40,7 @@
 		'es'		=> 'Español',
 		'fr'		=> 'Français',
 		'el'		=> 'Greek',
+		'hu'		=> 'Hungarian',
 		'it'		=> 'Italiano',
 		'ja'		=> 'Japanese',
 		'nl'		=> 'Nederlands',
@@ -47,8 +48,8 @@
 		'ptbr'		=> 'Português - Brasil',
 		'ro'		=> 'Românã',
 		'ru'		=> 'Russian',
-		'zh_CN'		=> 'Chinese (Simplified)',
-		'zh_TW'		=> 'Chinese (Traditional)'
+		'zh_CN'	=> 'Chinese (Simplified)',
+		'zh_TW'	=> 'Chinese (Traditional)'
 	);
 
 	//Create the select box and options
