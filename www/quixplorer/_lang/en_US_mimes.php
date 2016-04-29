@@ -61,8 +61,8 @@ $GLOBALS["mimes"]=array(
 	"cpph"		=> "C++ Header File",
 
 	// Java
-	"javas"	=> "Java Source File",
-	"javac"	=> "Java Class File",
+	"javas"		=> "Java Source File",
+	"javac"		=> "Java Class File",
 
 	// Pascal
 	"pas"		=> "Pascal File",
@@ -77,7 +77,7 @@ $GLOBALS["mimes"]=array(
 	"zip"		=> "ZIP Archive",
 	"tar"		=> "TAR Archive",
 	"gzip"		=> "GZIP Archive",
-	"bzip2"	=> "BZIP2 Archive",
+	"bzip2"		=> "BZIP2 Archive",
 	"rar"		=> "RAR Archive",
 	"iso"		=> "ISO File",
 	"mds"		=> "MDS File",
@@ -93,18 +93,18 @@ $GLOBALS["mimes"]=array(
 	"mpg"		=> "MPG File",
 	"mov"		=> "MOV File",
 	"avi"		=> "AVI File",
-	"flash"	=> "Flash File",
+	"flash"		=> "Flash File",
 	"mkv"		=> "MKV File",
 	"vob"		=> "VOB File",
 
 	// Micosoft / Adobe
 	"word"		=> "Word Document",
-	"excel"	=> "Excel Document",
+	"excel"		=> "Excel Document",
 	"pdf"		=> "PDF File",
 	"xml"		=> "XML File",
 	"c"		=> "C File",
 	"psd"		=> "Photoshop File",
-	"point"	=> "PowerPoint Presentation"
+	"point"		=> "PowerPoint Presentation"
 );
 
 ?>
