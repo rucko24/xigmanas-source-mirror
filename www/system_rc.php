@@ -31,105 +31,288 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("System"),gtext("Advanced"),gtext("Command Scripts"));
+$sphere_scriptname = basename(__FILE__);
+$sphere_scriptname_child = 'system_rc_edit.php';
+$sphere_header = 'Location: '.$sphere_scriptname;
+$sphere_header_parent = $sphere_header;
+$sphere_notifier = 'rc';
+$sphere_notifier_processor = 'rc_process_updatenotification';
+$sphere_array = [];
+$sphere_record = [];
+$checkbox_member_name = 'checkbox_member_array';
+$checkbox_member_array = [];
+$checkbox_member_record = [];
 
-if (!isset($config['rc']['preinit']['cmd']) || !is_array($config['rc']['preinit']['cmd']))
-	$config['rc']['preinit']['cmd'] = array();
+$gt_record_add = gtext('Add command');
+$gt_record_del = gtext('Command is marked for removal');
+$gt_record_dow = gtext('Move down');
+$gt_record_inf = gtext('Information');
+$gt_record_loc = gtext('Command is protected');
+$gt_record_mai = gtext('Maintenance');
+$gt_record_mod = gtext('Edit command');
+$gt_record_unl = gtext('Command is unlocked');
+$gt_record_up = gtext('Move up');
+$gt_selection_delete = gtext('Delete Selected Commands');
+$gt_selection_delete_confirm = gtext('Do you want to delete selected commands?');
+$img_path = [
+	'add' => 'images/add.png',
+	'del' => 'images/delete.png',
+	'dow' => 'images/down.png',
+	'inf' => 'images/info.png',
+	'loc' => 'images/locked.png',
+	'mai' => 'images/maintain.png',
+	'mod' => 'images/edit.png',
+	'unl' => 'images/unlocked.png',
+	'up' => 'images/up.png'
+];
 
-if (!isset($config['rc']['postinit']['cmd']) || !is_array($config['rc']['postinit']['cmd']))
-	$config['rc']['postinit']['cmd'] = array();
+// sunrise: verify if setting exists, otherwise run init tasks
+if(!(isset($config['rc']) && is_array($config['rc']))) {
+	$config['rc'] = [];
+}
+if(!(isset($config['rc']['param']) && is_array($config['rc']['param']))) {
+	$config['rc']['param'] = [];
+}
+$sphere_array = &$config['rc']['param'];
 
-if (!isset($config['rc']['shutdown']['cmd']) || !is_array($config['rc']['shutdown']['cmd']))
-	$config['rc']['shutdown']['cmd'] = array();
-
-if (isset($_GET['act']) && $_GET['act'] == "del")
-{
-	switch($_GET['type']) {
-		case "PREINIT":
-			$a_cmd = &$config['rc']['preinit']['cmd'];
-			break;
-		case "POSTINIT":
-			$a_cmd = &$config['rc']['postinit']['cmd'];
-			break;
-		case "SHUTDOWN":
-			$a_cmd = &$config['rc']['shutdown']['cmd'];
-			break;
+if($_POST) {
+	if(isset($_POST['apply']) && $_POST['apply']) {
+		$retval = 0;
+		$retval |= updatenotify_process($sphere_notifier, $sphere_notifier_processor);
+		$savemsg = get_std_save_message($retval);
+		if($retval == 0) {
+			updatenotify_delete($sphere_notifier);
+		}
+		header($sphere_header);
+		exit;
 	}
-
-	if ($a_cmd[$_GET['id']]) {
-		unset($a_cmd[$_GET['id']]);
-		write_config();
-		header("Location: system_rc.php");
+	if(isset($_POST['delete_selected_rows']) && $_POST['delete_selected_rows']) {
+		$checkbox_member_array = isset($_POST[$checkbox_member_name]) ? $_POST[$checkbox_member_name] : [];
+		foreach ($checkbox_member_array as $checkbox_member_record) {
+			if(false !== ($index = array_search_ex($checkbox_member_record, $sphere_array, 'uuid'))) {
+				$mode_updatenotify = updatenotify_get_mode($sphere_notifier, $sphere_array[$index]['uuid']);
+				switch ($mode_updatenotify) {
+					case UPDATENOTIFY_MODE_NEW:
+						updatenotify_clear($sphere_notifier, $sphere_array[$index]['uuid']);
+						updatenotify_set($sphere_notifier, UPDATENOTIFY_MODE_DIRTY_CONFIG, $sphere_array[$index]['uuid']);
+						break;
+					case UPDATENOTIFY_MODE_MODIFIED:
+						updatenotify_clear($sphere_notifier, $sphere_array[$index]['uuid']);
+						updatenotify_set($sphere_notifier, UPDATENOTIFY_MODE_DIRTY, $sphere_array[$index]['uuid']);
+						break;
+					case UPDATENOTIFY_MODE_UNKNOWN:
+						updatenotify_set($sphere_notifier, UPDATENOTIFY_MODE_DIRTY, $sphere_array[$index]['uuid']);
+						break;
+				}
+			}
+		}
+		header($sphere_header);
 		exit;
 	}
 }
+function rc_process_updatenotification($mode, $data) {
+	global $config;
+	$retval = 0;
+	switch ($mode) {
+		case UPDATENOTIFY_MODE_NEW:
+		case UPDATENOTIFY_MODE_MODIFIED:
+			write_config();
+			break;
+		case UPDATENOTIFY_MODE_DIRTY:
+		case UPDATENOTIFY_MODE_DIRTY_CONFIG:
+			if(is_array($config['rc']['param'])) {
+				if(false !== ($index = array_search_ex($data, $config['rc']['param'], 'uuid'))) {
+					unset($config['rc']['param'][$index]);
+					write_config();
+				}
+			}
+			break;
+	}
+	return $retval;
+}
+
+$pgtitle = [gtext('System'), gtext('Advanced'), gtext('Command scripts')];
 ?>
-<?php include("fbegin.inc");?>
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<?php include 'fbegin.inc';?>
+<script type="text/javascript">
+//<![CDATA[
+$(window).on("load", function() {
+	// Init action buttons
+	$("#delete_selected_rows").click(function () {
+		return confirm('<?=$gt_selection_delete_confirm;?>');
+	});
+	// Disable action buttons.
+	disableactionbuttons(true);
+	// Init toggle checkbox
+	$("#togglemembers").click(function() {
+		togglecheckboxesbyname(this, "<?=$checkbox_member_name;?>[]");
+	});
+	// Init member checkboxes
+	$("input[name='<?=$checkbox_member_name;?>[]").click(function() {
+		controlactionbuttons(this, '<?=$checkbox_member_name;?>[]');
+	});
+	// Init spinner onsubmit()
+	$("#iform").submit(function() { spinner(); });
+	// Init move row capability
+});
+function disableactionbuttons(ab_disable) {
+	var ab_element;
+	ab_element = document.getElementById('delete_selected_rows'); if ((ab_element != null) && (ab_element.disabled != ab_disable)) { ab_element.disabled = ab_disable; }
+}
+function togglecheckboxesbyname(ego, triggerbyname) {
+	var a_trigger = document.getElementsByName(triggerbyname);
+	var n_trigger = a_trigger.length;
+	var ab_disable = true;
+	var i = 0;
+	for (; i < n_trigger; i++) {
+		if (a_trigger[i].type == 'checkbox') {
+			if (!a_trigger[i].disabled) {
+				a_trigger[i].checked = !a_trigger[i].checked;
+				if (a_trigger[i].checked) {
+					ab_disable = false;
+				}
+			}
+		}
+	}
+	if (ego.type == 'checkbox') { ego.checked = false; }
+	disableactionbuttons(ab_disable);
+}
+function controlactionbuttons(ego, triggerbyname) {
+	var a_trigger = document.getElementsByName(triggerbyname);
+	var n_trigger = a_trigger.length;
+	var ab_disable = true;
+	var i = 0;
+	for (; i < n_trigger; i++) {
+		if (a_trigger[i].type == 'checkbox') {
+			if (a_trigger[i].checked) {
+				ab_disable = false;
+				break;
+			}
+		}
+	}
+	disableactionbuttons(ab_disable);
+}
+//]]>
+</script>
+<table id="area_navigator"><tbody>
 	<tr>
-    <td class="tabnavtbl">
-      <ul id="tabnav">
-      	<li class="tabinact"><a href="system_advanced.php"><span><?=gtext("Advanced");?></span></a></li>
-      	<li class="tabinact"><a href="system_email.php"><span><?=gtext("Email");?></span></a></li>
-      	<li class="tabinact"><a href="system_swap.php"><span><?=gtext("Swap");?></span></a></li>
-        <li class="tabact"><a href="system_rc.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Command Scripts");?></span></a></li>
-        <li class="tabinact"><a href="system_cron.php"><span><?=gtext("Cron");?></span></a></li>
-		<li class="tabinact"><a href="system_loaderconf.php"><span><?=gtext("loader.conf");?></span></a></li>
-        <li class="tabinact"><a href="system_rcconf.php"><span><?=gtext("rc.conf");?></span></a></li>
-        <li class="tabinact"><a href="system_sysctl.php"><span><?=gtext("sysctl.conf");?></span></a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td class="tabcont">
-      <table width="100%" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td width="80%" class="listhdrlr"><?=gtext("Command");?></td>
-          <td width="10%" class="listhdrr"><?=gtext("Type");?></td>
-          <td width="10%" class="list"></td>
-        </tr>
-			  <?php $i = 0; foreach($config['rc']['preinit']['cmd'] as $cmd): ?>
-        <tr>
-          <td class="listlr"><?=htmlspecialchars($cmd);?>&nbsp;</td>
-          <td class="listbg"><?php echo(gtext("PreInit"));?>&nbsp;</td>
-          <td valign="middle" nowrap="nowrap" class="list">
-            <a href="system_rc_edit.php?id=<?=$i;?>&amp;type=PREINIT"><img src="images/edit.png" title="<?=gtext("Edit command");?>" border="0" alt="<?=gtext("Edit command");?>" /></a>&nbsp;
-            <a href="system_rc.php?act=del&amp;id=<?=$i;?>&amp;type=PREINIT" onclick="return confirm('<?=gtext("Do you really want to delete this command?");?>')"><img src="images/delete.png" title="<?=gtext("Delete command");?>" border="0" alt="<?=gtext("Delete command");?>" /></a>
-          </td>
-        </tr>
-        <?php $i++; endforeach;?>
-        <?php $i = 0; foreach($config['rc']['postinit']['cmd'] as $cmd): ?>
-        <tr>
-          <td class="listlr"><?=htmlspecialchars($cmd);?>&nbsp;</td>
-          <td class="listbg"><?php echo(gtext("PostInit"));?>&nbsp;</td>
-          <td valign="middle" nowrap="nowrap" class="list">
-            <a href="system_rc_edit.php?id=<?=$i;?>&amp;type=POSTINIT"><img src="images/edit.png" title="<?=gtext("Edit command");?>" border="0" alt="<?=gtext("Edit command");?>" /></a>&nbsp;
-            <a href="system_rc.php?act=del&amp;id=<?=$i;?>&amp;type=POSTINIT" onclick="return confirm('<?=gtext("Do you really want to delete this command?");?>')"><img src="images/delete.png" title="<?=gtext("Delete command");?>" border="0" alt="<?=gtext("Delete command");?>" /></a>
-          </td>
-        </tr>
-        <?php $i++; endforeach;?>
-        <?php $i = 0; foreach($config['rc']['shutdown']['cmd'] as $cmd): ?>
-        <tr>
-          <td class="listlr"><?=htmlspecialchars($cmd);?>&nbsp;</td>
-          <td class="listbg"><?php echo(gtext("Shutdown"));?>&nbsp;</td>
-          <td valign="middle" nowrap="nowrap" class="list">
-            <a href="system_rc_edit.php?id=<?=$i;?>&amp;type=SHUTDOWN"><img src="images/edit.png" title="<?=gtext("Edit command");?>" border="0" alt="<?=gtext("Edit command");?>" /></a>&nbsp;
-            <a href="system_rc.php?act=del&amp;id=<?=$i;?>&amp;type=SHUTDOWN" onclick="return confirm('<?=gtext("Do you really want to delete this command?");?>')"><img src="images/delete.png" title="<?=gtext("Delete command");?>" border="0" alt="<?=gtext("Delete command");?>" /></a>
-          </td>
-        </tr>
-        <?php $i++; endforeach;?>
-        <tr>
-          <td class="list" colspan="2"></td>
-          <td class="list"><a href="system_rc_edit.php"><img src="images/add.png" title="<?=gtext("Add command");?>" border="0" alt="<?=gtext("Add command");?>" /></a></td>
-        </tr>
-      </table>
-      <div id="remarks">
-      	<?php html_remark("note", gtext("Note"), gtext("These commands will be executed pre or post system initialization (booting) or before system shutdown."));?>
-      </div>
-    </td>
-  </tr>
+		<td class="tabnavtbl">
+			<ul id="tabnav">
+				<li class="tabinact"><a href="system_advanced.php"><span><?=gtext('Advanced');?></span></a></li>
+				<li class="tabinact"><a href="system_email.php"><span><?=gtext('Email');?></span></a></li>
+				<li class="tabinact"><a href="system_swap.php"><span><?=gtext('Swap');?></span></a></li>
+				<li class="tabact"><a href="system_rc.php" title="<?=gtext('Reload page');?>"><span><?=gtext('Command Scripts');?></span></a></li>
+				<li class="tabinact"><a href="system_cron.php"><span><?=gtext('Cron');?></span></a></li>
+				<li class="tabinact"><a href="system_loaderconf.php"><span><?=gtext('loader.conf');?></span></a></li>
+				<li class="tabinact"><a href="system_rcconf.php"><span><?=gtext('rc.conf');?></span></a></li>
+				<li class="tabinact"><a href="system_sysctl.php"><span><?=gtext('sysctl.conf');?></span></a></li>
+			</ul>
+		</td>
+	</tr>
 </table>
-<?php include("fend.inc");?>
+<table id="area_data"><tbody><tr><td id="area_data_frame"><form action="<?=$sphere_scriptname;?>" method="post" name="iform" id="iform">
+	<?php
+		if(!empty($savemsg)) {
+			print_info_box($savemsg);
+		} else {
+			if(file_exists($d_sysrebootreqd_path)) {
+				print_info_box(get_std_save_message(0));
+			}
+		}
+		if(updatenotify_exists($sphere_notifier)) { print_config_change_box(); } 
+	?>
+	<table id="area_data_selection">
+		<colgroup>
+			<col style="width:5%">
+			<col style="width:15%">
+			<col style="width:35%">
+			<col style="width:25%">
+			<col style="width:10%">
+			<col style="width:10%">
+		</colgroup>
+		<thead>
+			<?php html_titleline2(gtext('Overview'), 6);?>
+			<tr>
+				<th class="lhelc"><input type="checkbox" id="togglemembers" name="togglemembers" title="<?=gtext('Invert Selection');?>"/></th>
+				<th class="lhell"><?=gtext('Name');?></th>
+				<th class="lhell"><?=gtext('Command');?></th>
+				<th class="lhell"><?=gtext('Comment');?></th>
+				<th class="lhell"><?=gtext('Type');?></th>
+				<th class="lhebl"><?=gtext('Toolbox');?></th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<th class="lcenl" colspan="5"></th>
+				<th class="lceadd"><a href="<?=$sphere_scriptname_child;?>"><img src="<?=$img_path['add'];?>" title="<?=$gt_record_add;?>" alt="<?=$gt_record_add;?>"/></a></th>
+			</tr>
+		</tfoot>
+		<tbody>
+			<?php foreach($sphere_array as $sphere_record):?>
+				<?php
+					$notificationmode = updatenotify_get_mode($sphere_notifier, $sphere_record['uuid']);
+					$notdirty = (UPDATENOTIFY_MODE_DIRTY != $notificationmode) && (UPDATENOTIFY_MODE_DIRTY_CONFIG != $notificationmode);
+					$enabled = isset($sphere_record['enable']);
+					$notprotected = !isset($sphere_record['protected']);
+					switch ($sphere_record['typeid']) {
+						case 1:
+							$gt_type = gtext('PreInit');
+							break;
+						case 2:
+							$gt_type = gtext('PostInit');
+							break;
+						case 3:
+							$gt_type = gtext('Shutdown');
+							break;
+						default:
+							$gt_type = gtext('Unknown');
+							break;
+					}
+				?>
+				<tr>
+					<td class="<?=$enabled ? "lcelc" : "lcelcd";?>">
+						<?php if($notdirty && $notprotected):?>
+							<input type="checkbox" name="<?=$checkbox_member_name;?>[]" value="<?=$sphere_record['uuid'];?>" id="<?=$sphere_record['uuid'];?>"/>
+						<?php else:?>
+							<input type="checkbox" name="<?=$checkbox_member_name;?>[]" value="<?=$sphere_record['uuid'];?>" id="<?=$sphere_record['uuid'];?>" disabled="disabled"/>
+						<?php endif;?>
+					</td>
+					<td class="lcell"><?=htmlspecialchars($sphere_record['name']);?></td>
+					<td class="lcell"><?=htmlspecialchars($sphere_record['value']);?></td>
+					<td class="lcell"><?=htmlspecialchars($sphere_record['comment']);?></td>
+					<td class="lcell"><?=$gt_type;?></td>
+					<td class="lcebld">
+						<table id="area_data_selection_toolbox"><tbody><tr>
+							<td>
+								<?php if($notdirty && $notprotected):?>
+									<a href="<?=$sphere_scriptname_child;?>?uuid=<?=$sphere_record['uuid'];?>"><img src="<?=$img_path['mod'];?>" title="<?=$gt_record_mod;?>" alt="<?=$gt_record_mod;?>" /></a>
+								<?php else:?>
+									<?php if($notprotected):?>
+										<img src="<?=$img_path['del'];?>" title="<?=$gt_record_del;?>" alt="<?=$gt_record_del;?>"/>
+									<?php else:?>
+										<img src="<?=$img_path['loc'];?>" title="<?=$gt_record_loc;?>" alt="<?=$gt_record_loc;?>"/>
+									<?php endif;?>
+								<?php endif;?>
+							</td>
+							<?php if(updatenotify_exists($sphere_notifier)):?>
+							<?php else:?>
+								<td><a href="system_rc_sort.php"><img src="<?=$img_path['mai'];?>" title="<?=$gt_record_mai;?>" alt="<?=$gt_record_mai;?>" /></a></td>
+							<?php endif;?>
+						</tr></tbody></table>
+					</td>
+				</tr>
+			<?php endforeach;?>
+		</tbody>
+	</table>
+	<div id="submit">
+		<input name="delete_selected_rows" id="delete_selected_rows" type="submit" class="formbtn" value="<?=$gt_selection_delete;?>"/>
+	</div>
+	<div id="remarks">
+		<?php html_remark('note', gtext('Note'), gtext('These commands will be executed pre or post system initialization (booting) or before system shutdown.'));?>
+	</div>
+	<?php include 'formend.inc';?>
+</form></td></tr></tbody></table>
+<?php include 'fend.inc';?>
