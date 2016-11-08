@@ -34,25 +34,26 @@
 require("auth.inc");
 require("guiconfig.inc");
 
+$status_cpu = true;
 $pgtitle = array(gtext("Status"), gtext("Monitoring"), gtext("CPU Load"));
 
+$status_cpu = true;
 $graph_gap = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 $graph_width = 397;
 $graph_height = 220;
-?>
-<?php include("fbegin.inc");?>
+
+include("fbegin.inc");?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
 		<td class="tabnavtbl">
   		<ul id="tabnav">
-        <li class="tabinact"><a href="status_graph.php"><span><?=gtext("System Load");?></span></a></li>
-        <li class="tabact"><a href="status_graph_cpu.php" title="<?=gtext('Reload page');?>"><span><?=gtext("CPU Load");?></span></a></li>
-      </ul>
-    </td>
-  </tr>
+		<?php require("status_graph_tabs.inc");?>
+	   </ul>
+	</td>
+ </tr>
     <td class="tabcont">
-        <?=gtext("Graph shows last 120 seconds");?>
-<div align="center" style="min-width:840px;">
+	<?=gtext("Graph shows last 120 seconds");?>
+	<div align="center" style="min-width:840px;">
         <br />
 <?php
 session_start();
