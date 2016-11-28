@@ -33,6 +33,7 @@
 	//Set the language array
 	$lang = array(
 		'en_US'	=> 'English',
+		'af'		=> 'Afrikaans',
 		'bg'		=> 'Български',
 		'cs'		=> 'čeština',
 		'da'		=> 'Dansk',
