@@ -35,6 +35,7 @@
 		'en_US'	=> 'English',
 		'af'		=> 'Afrikaans',
 		'bg'		=> 'Български',
+		'ca'		=> 'català',		
 		'cs'		=> 'čeština',
 		'da'		=> 'Dansk',
 		'de'		=> 'Deutsch',
