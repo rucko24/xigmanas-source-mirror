@@ -38,22 +38,15 @@ use common\sphere as mys;
  *	Wrapper class for autoloading functions
  */
 final class setting_toolbox {
-	private const NOTIFICATION_PROCESSOR = 'process_notification';
 /**
  *	Create the sphere object
- *	@global array $config
  *	@return \common\sphere\row The sphere object
  */
 	public static function init_sphere() {
-		global $config;
-
-		$sphere = new mys\row();
+		$sphere = new mys\settings();
+		shared_toolbox::init_sphere($sphere);
 		$sphere->
-			set_script('services_ctl')->
-			set_notifier('services\ctld')->
-			set_notifier_processor(sprintf('%s\%s::%s',__NAMESPACE__,'utilities',self::NOTIFICATION_PROCESSOR))->
-			set_enadis(true);
-		$sphere->grid = &array_make_branch($config,'ctld');
+			set_script('services_ctl');
 		return $sphere;
 	}
 /**
@@ -62,12 +55,13 @@ final class setting_toolbox {
  *	@param \common\sphere\row $sphere
  *	@return \common\rmo\rmo The request method object
  */
-	public static function init_rmo(setting_properties $cop,mys\row $sphere) {
+	public static function init_rmo(setting_properties $cop,mys\settings $sphere) {
 		$rmo = new myr\rmo();
 		$rmo->
 			set_default('GET','view',PAGE_MODE_VIEW)->
 			add('GET','edit',PAGE_MODE_EDIT)->
 			add('GET','view',PAGE_MODE_VIEW)->
+			add('POST','apply',PAGE_MODE_VIEW)->
 			add('POST','edit',PAGE_MODE_EDIT)->
 			add('POST','reload',PAGE_MODE_VIEW)->
 			add('POST','restart',PAGE_MODE_VIEW)->
