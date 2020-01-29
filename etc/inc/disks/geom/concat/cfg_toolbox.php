@@ -38,10 +38,10 @@ namespace disks\geom\concat;
  */
 final class cfg_toolbox {
 /**
- *	Returns the geom name of $_GET['uuid'] or NULL.
+ *	Returns the gconcat name of $uuid or NULL.
  *	@global array $config The global config file.
- *	@param string $uuid UUID of the geom.
- *	@return string|null geom name.
+ *	@param string $uuid UUID of the gconcat.
+ *	@return string|null gconcat name.
  */
 	public static function name_of_uuid(string $uuid): ?string {
 		global $config;
