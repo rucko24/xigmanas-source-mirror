@@ -31,59 +31,13 @@
 	of the authors and should not be interpreted as representing official policies
 	of XigmaNAS®, either expressed or implied.
 */
+
 require_once 'auth.inc';
 require_once 'guiconfig.inc';
+require_once 'autoload.php';
 
-function nut_get_driverlist() {
-	$a_driverinfo = [];
+use services\nutd\driverlist\grid_toolbox as toolbox;
 
-	// Read file
-	$a_driver = file("/usr/local/etc/nut/driver.list");
-	if (!is_array($a_driver))
-		return $a_driverinfo;
-
-	// Parse data
-	foreach ($a_driver as $driver) {
-		// Syntax should look like: '"<manufacturer>" "<device type>" "<support level>" "<model name>" "<model extra>" "<driver>"'.
-		if (preg_match("/^\"(.*)\".*\"(.*)\".*\"(.*)\".*\"(.*)\".*\"(.*)\".*\"(.*)\".*/", $driver, $matches)) {
-			$driverinfo = [];
-			$driverinfo['manufacturer'] = $matches[1];
-			$driverinfo['modelname'] = $matches[4];
-			$driverinfo['modelextra'] = $matches[5];
-			$driverinfo['driver'] = $matches[6];
-			
-			$a_driverinfo[] = $driverinfo;
-		}
-	}
-
-	return $a_driverinfo;
-}
-$pgtitle = [gtext('Services'),gtext('UPS'),gtext('Driver List')];
-?>
-<?php include 'fbegin.inc';?>
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-	<tr>
-		<td class="tabcont">
-			<form action="services_ups_drv.php" method="post" name="iform" id="iform">
-				<table width="100%" border="0" cellpadding="0" cellspacing="0">
-					<tr>
-						<td width="25%" class="listhdrlr"><?=gtext("Manufacturer");?></td>
-						<td width="25%" class="listhdrr"><?=gtext("Model Name");?></td>
-						<td width="25%" class="listhdrr"><?=gtext("Model Extra");?></td>
-						<td width="25%" class="listhdrr"><?=gtext("Driver");?></td>
-					</tr>
-					<?php foreach(nut_get_driverlist() as $driverinfov):?>
-						<tr>
-							<td class="listlr"><?=htmlspecialchars($driverinfov['manufacturer']);?>&nbsp;</td>
-							<td class="listr"><?=htmlspecialchars($driverinfov['modelname']);?>&nbsp;</td>
-							<td class="listr"><?=htmlspecialchars($driverinfov['modelextra']);?>&nbsp;</td>
-							<td class="listr"><?=htmlspecialchars($driverinfov['driver']);?>&nbsp;</td>
-						</tr>
-					<?php endforeach;?>
-				</table>
-				<?php include 'formend.inc';?>
-			</form>
-		</td>
-	</tr>
-</table>
-<?php include 'fend.inc';?>
+$sphere = toolbox::init_sphere();
+$cop = toolbox::init_properties();
+toolbox::render($cop,$sphere);
