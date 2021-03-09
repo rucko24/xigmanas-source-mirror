@@ -39,40 +39,13 @@ use const FILTER_REQUIRE_SCALAR,FILTER_VALIDATE_INT;
 /**
  *	Int property
  */
-class property_int extends property_text {
-	public $x_min = null;
-	public $x_max = null;
-
-	public function set_min(int $min = null) {
-		$this->x_min = $min;
-		return $this;
-	}
-	public function get_min() {
-		return $this->x_min;
-	}
-	public function set_max(int $max = null) {
-		$this->x_max = $max;
-		return $this;
-	}
-	public function get_max() {
-		return $this->x_max;
-	}
+class property_int extends abstract_property_numeric {
 	public function filter_use_default() {
+		parent::filter_use_default();
 		$filter_name = 'ui';
-		$options = [];
-		$options['default'] = null;
-		$min = $this->get_min();
-		if(isset($min)):
-			$options['min_range'] = $min;
-		endif;
-		$max = $this->get_max();
-		if(isset($max)):
-			$options['max_range'] = $max;
-		endif;
 		$this->
 			set_filter(FILTER_VALIDATE_INT,$filter_name)->
-			set_filter_flags(FILTER_REQUIRE_SCALAR,$filter_name)->
-			set_filter_options($options,$filter_name);
+			set_filter_flags(FILTER_REQUIRE_SCALAR,$filter_name);
 		return $this;
 	}
 }
