@@ -32,9 +32,9 @@
 	of XigmaNAS®, either expressed or implied.
 */
 
+require_once 'autoload.php';
 require_once 'auth.inc';
 require_once 'guiconfig.inc';
-require_once 'autoload.php';
 
 use common\arr;
 use disks\zfs\scheduler\snapshot\create\row_toolbox as toolbox;
