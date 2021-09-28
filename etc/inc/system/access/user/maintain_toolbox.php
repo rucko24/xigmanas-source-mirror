@@ -36,6 +36,7 @@ namespace system\access\user;
 
 use common\rmo as myr;
 use common\sphere as mys;
+use common\toolbox as myt;
 
 use const PAGE_MODE_EDIT;
 use const PAGE_MODE_POST;
@@ -43,7 +44,7 @@ use const PAGE_MODE_POST;
 /**
  *	Wrapper class for autoloading functions
  */
-final class maintain_toolbox {
+final class maintain_toolbox extends myt\maintain_toolbox {
 /**
  *	Create the sphere object
  *	@global array $config
@@ -73,22 +74,5 @@ final class maintain_toolbox {
 			add('POST','maintain',PAGE_MODE_EDIT)->
 			add('POST','save',PAGE_MODE_POST);
 		return $rmo;
-	}
-/**
- *	Create the properties object
- *	@return row_properties The properties object
- */
-	public static function init_properties() {
-		$cop = new row_properties();
-		$cop->get_name()->
-			set_editableonadd(false)->
-			set_editableonmodify(false);
-		$cop->get_fullname()->
-			set_editableonadd(false)->
-			set_editableonmodify(false);
-		$cop->get_password()->
-			set_editableonadd(false)->
-			set_editableonmodify(true);
-		return $cop;
 	}
 }
