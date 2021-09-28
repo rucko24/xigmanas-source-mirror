@@ -36,7 +36,7 @@ namespace common\toolbox;
 
 use ReflectionClass;
 
-abstract class toolbox {
+abstract class toolbox implements interface_toolbox {
 	protected const PCN = '';
 /**
  *	Static method to instantiate related namespaced properties object
