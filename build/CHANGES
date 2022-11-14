@@ -1,0 +1,51 @@
+XigmaNAS® 13.1.0.5 - Glowpanel
+-------------------------
+Changes:
+- Upgrade to FreeBSD 13.1-RELEASE P3.
+- Upgrade tmux to v3.3a.
+- Upgrade nano to v6.4.
+- Upgrade cdialog to v1.3-20220728.
+- Upgrade rrdtool to v1.8.0.
+- Upgrade proftpd to v1.3.7e.
+- Upgrade msmtp to v1.8.22.
+- Upgrade lighttpd to v1.4.67.
+- Upgrade arcconf to vB25335.
+- Upgrade devcpu-data-amd to v20221002.
+- Upgrade pecl-APCu to v5.1.22.
+- Upgrade jquery to v3.6.1.
+- Upgrade bash to v5.2p2.
+- Upgrade zoneinfo to 2022f.
+- Upgrade python to v3.9.15.
+- Upgrade virtualbox-ose to v6.1.40.
+- Upgrade sudo to v1.9.12p1.
+- Upgrade nut to v2022.10.21.
+- Upgrade php to v8.1.12.
+- Upgrade iperf3 to v3.12.
+- Upgrade syncthing to v1.22.1.
+- Upgrade devcpu-data-intel to v20221108.
+- Upgrade rsync to v3.2.6.
+
+Fixes:
+- fix bring up lighttpd at all times.
+- fix CVE-2022-3437 by backport samba fixes.
+
+Permanent restrictions:
+- It is not possible to format a SoftRAID disk with MSDOS FAT16/32.
+- It is not possible to encrypt a disk partition, only complete disks are supported.
+- AFP shares with TimeMachine support are limited to max. 4 shares.
+- Upgrade php to 8.0.13.
+Known bugs:
+- If DHCP for IPv4 is used, the IPv6 statically configured DNS server will be
+  overriden by the IPv4 DNS server.
+
+NEED TESTING:
+- IPv6: auto mode.
+- All services using IPv6 address. (NFS, FTP, etc...)
+- Netatalk VFS Samba module (automatically enabled when Netatalk starts) crashes
+  samba when accessing to share.
+- Need to write an online-test procedure.
+
+Help needed:
+- Need help for adding LDAP authentication feature:
+  Main services can be easily authenticated using PAM-LDAP, but is harder for Samba.
+
