@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: XigmaNAS\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@xigmanas.com>\n"
 "POT-Creation-Date: 2023-02-26 15:59+0000\n"
-"PO-Revision-Date: 2019-11-09 20:14+0000\n"
-"Last-Translator: Péter <Unknown>\n"
+"PO-Revision-Date: 2024-03-29 18:36+0000\n"
+"Last-Translator: eFeS <Unknown>\n"
 "Language-Team: XigmaNAS\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2023-07-23 20:04+0000\n"
-"X-Generator: Launchpad (build 2bfac4503c7b6a57e9a8acd782035a16f97e2ddb)\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Launchpad-Export-Date: 2024-03-29 18:40+0000\n"
+"X-Generator: Launchpad (build aec24aef7a9042c99ef3e238d8b0ca01df9e1a9f)\n"
 "Language: hu_HU\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 msgid ""
 " Controls whether device nodes can be opened on this file system. The "
@@ -116,27 +116,27 @@ msgstr "%s%d %s már használatban van: %s%d."
 
 #, php-format
 msgid "%u hour"
-msgstr ""
+msgstr "%u óra"
 
 #, php-format
 msgid "%u hours"
-msgstr ""
+msgstr "%u óra"
 
 #, php-format
 msgid "%u minute"
-msgstr ""
+msgstr "%u perc"
 
 #, php-format
 msgid "%u minutes"
-msgstr ""
+msgstr "%u perc"
 
 #, php-format
 msgid "%u second"
-msgstr ""
+msgstr "%u másodperc"
 
 #, php-format
 msgid "%u seconds"
-msgstr ""
+msgstr "%u másodperc"
 
 #, php-format
 msgid "'%s' deletes all statistical data from the graphs!"
@@ -146,8 +146,8 @@ msgid ""
 "(Default lengths are: 128 for AES, 128 for Blowfish, 128 for Camellia and "
 "192 for 3DES)."
 msgstr ""
-"(Az alapértelmezett hosszúságok a következők: 128 AES esetén, 128 Blowfish "
-"esetén, 128 Camellia esetén, 192 3DES esetén)."
+"(Alapértelmezett hosszúságok: 128 AES, 128 Blowfish, 128 Camellia, 192 3DES "
+"esetén)."
 
 msgid "(Found in a Maxtor 6B200M0 200GB and Maxtor 2R015H1 15GB disks)."
 msgstr "(Maxtor 6B200M0 200GB és Maxtor 2R015H1 15GB lemezekben van)."
@@ -212,7 +212,7 @@ msgid "+upnp:class,+upnp:originalTrackNumber,+dc:title"
 msgstr "+upnp:osztály,+upnp:erefetiSzám,+dc:cím"
 
 msgid "/"
-msgstr ""
+msgstr "/"
 
 msgid "/mnt"
 msgstr "/mnt"
@@ -250,10 +250,10 @@ msgid "1000000"
 msgstr "1000000"
 
 msgid "102"
-msgstr ""
+msgstr "102"
 
 msgid "128K"
-msgstr ""
+msgstr "128K"
 
 msgid "16 KiB"
 msgstr "16 KiB"
@@ -262,28 +262,28 @@ msgid "16384"
 msgstr "16384"
 
 msgid "16K"
-msgstr ""
+msgstr "16K"
 
 msgid "16k"
-msgstr ""
+msgstr "16k"
 
 msgid "192.168.0.0/24"
 msgstr "92.168.0.0/24"
 
 msgid "1K"
-msgstr ""
+msgstr "1k"
 
 msgid "1M"
-msgstr ""
+msgstr "Copy text \t 1M"
 
 msgid "1k"
-msgstr ""
+msgstr "1k"
 
 msgid "2"
 msgstr "2"
 
 msgid "2 - two copies"
-msgstr ""
+msgstr "2 - kettő másolat"
 
 msgid "2 KiB"
 msgstr "2 KiB"
@@ -301,13 +301,13 @@ msgid "22"
 msgstr "22"
 
 msgid "256K"
-msgstr ""
+msgstr "256K"
 
 msgid "2K"
-msgstr ""
+msgstr "2K"
 
 msgid "2k"
-msgstr ""
+msgstr "2k"
 
 msgid "3"
 msgstr "3"
@@ -328,19 +328,19 @@ msgid "32 KiB"
 msgstr "2 KiB"
 
 msgid "32K"
-msgstr ""
+msgstr "32K"
 
 msgid "4 KiB"
 msgstr "4 KiB"
 
 msgid "4K"
-msgstr ""
+msgstr "4K"
 
 msgid "4KB wrapper"
 msgstr "4KB csomagoló"
 
 msgid "4k"
-msgstr ""
+msgstr "4k"
 
 msgid "5.25\""
 msgstr "5,25\""
@@ -349,13 +349,13 @@ msgid "512 Bytes"
 msgstr "512 bájt"
 
 msgid "512 bytes"
-msgstr ""
+msgstr "512 bytes"
 
 msgid "512B"
-msgstr ""
+msgstr "512B"
 
 msgid "512K"
-msgstr ""
+msgstr "512K"
 
 msgid "514"
 msgstr "514"
@@ -364,7 +364,7 @@ msgid "64 KiB"
 msgstr "64 KiB"
 
 msgid "64K"
-msgstr ""
+msgstr "64K"
 
 msgid "69"
 msgstr "69"
@@ -373,22 +373,22 @@ msgid "8 KiB"
 msgstr "8 KiB"
 
 msgid "802.1Q (default)"
-msgstr ""
+msgstr "802.1Q (alapértelmezett)"
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "802.1Q VLAN címke (1 és 4094 közötti érték)."
 
 msgid "802.1ad (QinQ)"
-msgstr ""
+msgstr "802.1ad (QinQ)"
 
 msgid "8200"
 msgstr "8200"
 
 msgid "8K"
-msgstr ""
+msgstr "8K"
 
 msgid "8k"
-msgstr ""
+msgstr "8k"
 
 msgid ""
 "A NTP time server name may only contain the following characters: a-z, 0-9, "
@@ -506,7 +506,7 @@ msgid "A valid prefix (1-128) must be specified."
 msgstr "Érvényes előtagot (1-128) kell megadni."
 
 msgid "AC3 Audio File"
-msgstr ""
+msgstr "AC3 Audio Fájl"
 
 msgid "ACL Inherit"
 msgstr "ACL öröklődés"
@@ -515,7 +515,7 @@ msgid "ACL Mode"
 msgstr "ACL mód"
 
 msgid "ACL Type"
-msgstr ""
+msgstr "ACL Típus"
 
 msgid "ACL inherit"
 msgstr "ACL öröklődés"
@@ -551,7 +551,7 @@ msgid "ASCII"
 msgstr "ASCII"
 
 msgid "AVI File"
-msgstr ""
+msgstr "AVI Fájl"
 
 msgid "Accept remote syslog messages."
 msgstr "Távoli rendszernapló-üzenetek fogadása"
@@ -581,7 +581,7 @@ msgid "Action"
 msgstr "Művelet"
 
 msgid "Actions"
-msgstr ""
+msgstr "Műveletek"
 
 msgid "Activate"
 msgstr "Aktivál"
@@ -648,7 +648,7 @@ msgid "Add Encrypted Volume"
 msgstr "Titkosított kötet hozzáadása"
 
 msgid "Add Filesystem"
-msgstr ""
+msgstr "Filerendszer felvétele"
 
 msgid "Add Group"
 msgstr "Csoport hozzáadása"
@@ -702,7 +702,7 @@ msgid "Add Portal Group"
 msgstr "Portál csoport hozzáadása"
 
 msgid "Add Provider"
-msgstr ""
+msgstr "Szolgáltató hozzáadása"
 
 msgid "Add Public Key"
 msgstr "Nyilvános kulcs hozzáadása"
@@ -711,7 +711,7 @@ msgid "Add RAID"
 msgstr "RAID hozzáadása"
 
 msgid "Add Reboot Schedule"
-msgstr ""
+msgstr "Újraindítás ütemezése"
 
 msgid "Add Record"
 msgstr "Bejegyzés hozzáadása"
@@ -732,7 +732,7 @@ msgid "Add Samba Share"
 msgstr "Samba megosztás hozzáadása"
 
 msgid "Add Schedule"
-msgstr ""
+msgstr "Ütemezés felvétele"
 
 msgid "Add Share"
 msgstr "Megosztás hozzáadása"
@@ -858,7 +858,7 @@ msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr "Remote hastd daemon címe. Statikus IP címnek kell lennie."
 
 msgid "Admin"
-msgstr ""
+msgstr "Admin"
 
 msgid "Admin Password"
 msgstr "Rendszergazda jelszava"
@@ -876,7 +876,7 @@ msgid "Administrator Name"
 msgstr "Rendszergazda neve"
 
 msgid "Administrator Password"
-msgstr ""
+msgstr "Rendszergazdai jelszó"
 
 msgid "Advanced"
 msgstr "Haladó"
@@ -946,10 +946,10 @@ msgid "All"
 msgstr "Minden"
 
 msgid "All Days"
-msgstr ""
+msgstr "Minden nap"
 
 msgid "All Hours"
-msgstr ""
+msgstr "Minden óra"
 
 msgid "All Interfaces"
 msgstr "Valamennyi interfész"
@@ -958,10 +958,10 @@ msgid "All Minutes"
 msgstr ""
 
 msgid "All Months"
-msgstr ""
+msgstr "Minden hónap"
 
 msgid "All Weekdays"
-msgstr ""
+msgstr "Minden hétvége"
 
 msgid "All data from the following statistics have been deleted:"
 msgstr "A következő statisztikák összes adatát sikeresen törölted:"
@@ -1000,7 +1000,7 @@ msgid "Allow GSSAPI authentication."
 msgstr "GSSAPI hitelesítés bekapcsolása"
 
 msgid "Allow IPv6"
-msgstr ""
+msgstr "IPv6 engedélyezése"
 
 msgid "Allow New Files"
 msgstr "Új fájlok engedélyezése"
@@ -1277,7 +1277,7 @@ msgid "Archive mode."
 msgstr "Archív mód"
 
 msgid "Are you sure you want to delete selected item(s)?"
-msgstr ""
+msgstr "Biztos, hogy törölni kell a kijelölt elem(ek)et?"
 
 msgid "Are you sure you want to reboot the server?"
 msgstr "Biztos, hogy újraindítod a szervert?"
@@ -1435,7 +1435,7 @@ msgid "Auto Snapshot Settings"
 msgstr "Automatikus pillanatkép beállításai"
 
 msgid "Auto mount"
-msgstr ""
+msgstr "Automata csatolás"
 
 msgid "Auto page refresh."
 msgstr "Automatikus oldal-újratöltés."
@@ -1487,10 +1487,10 @@ msgstr ""
 "működési fordulatig)."
 
 msgid "BMP Image"
-msgstr ""
+msgstr "BMP kép"
 
 msgid "BZIP2 Archive"
-msgstr ""
+msgstr "BZIP2 archívum"
 
 msgid "Back"
 msgstr "Vissza"
@@ -1643,7 +1643,7 @@ msgid "BitTorrent"
 msgstr "BitTorrent"
 
 msgid "BitTorrent Settings"
-msgstr ""
+msgstr "BitTorrent-beállítások"
 
 msgid "Blank Time"
 msgstr "Üres idő"
@@ -1658,7 +1658,7 @@ msgid "Blocksize"
 msgstr "Blokkméret"
 
 msgid "Bookmark - Creates a bookmark of a given snapshot."
-msgstr ""
+msgstr "Könyvjelző - Könyvjelző létrehozása az adott snapshothoz."
 
 msgid "Boot Arguments"
 msgstr "Rendszerindító argumentumok"
@@ -1724,7 +1724,7 @@ msgstr ""
 "az alapértelmezett 300 másodperc."
 
 msgid "Broken RTC"
-msgstr ""
+msgstr "Sérült óra informácók (Real Time Clock)"
 
 msgid "Browseable"
 msgstr "Böngészhető"
@@ -1749,16 +1749,16 @@ msgid "Bytes/sec"
 msgstr "Byte/mp"
 
 msgid "C File"
-msgstr ""
+msgstr "C fájl"
 
 msgid "C++ Header File"
-msgstr ""
+msgstr "C++ header fájl"
 
 msgid "C++ Source File"
-msgstr ""
+msgstr "C++ forrásfájl"
 
 msgid "CA Trusted Certificates"
-msgstr ""
+msgstr "Megbízható CA tanusítvány"
 
 msgid "CACHE"
 msgstr "GYORSÍTÓTÁRAZÁS"
@@ -1807,10 +1807,10 @@ msgid "CD/DVD drive"
 msgstr "CD/DVD lemez"
 
 msgid "CGI Script"
-msgstr ""
+msgstr "CGI szkript"
 
 msgid "CHANGE PERMISSIONS"
-msgstr ""
+msgstr "JOGOSULTSÁGOK MEGVÁLTOZTATÁSA"
 
 msgid "CHANGED"
 msgstr "MEGVÁLTOZOTT"
@@ -1840,7 +1840,7 @@ msgid "CHAP-Mutual"
 msgstr "CHAP-kölcsönösség"
 
 msgid "COPY"
-msgstr ""
+msgstr "MÁSOLÁS"
 
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (cirill)"
@@ -1912,7 +1912,7 @@ msgid "CRC32C"
 msgstr "CRC32C"
 
 msgid "CSS File"
-msgstr ""
+msgstr "CSS fájl"
 
 msgid "CSS Settings"
 msgstr "CSS beállítások"
@@ -1921,7 +1921,7 @@ msgid "CTL LUN"
 msgstr "CTL LUN"
 
 msgid "Cache Directory"
-msgstr ""
+msgstr "Gyorsítótár-könyvtár"
 
 msgid "Calibration Battery"
 msgstr "Elem kalibrálása"
@@ -2001,7 +2001,7 @@ msgid "Change below file"
 msgstr "Változás az alábbi fájlt"
 
 msgid "Change permissions"
-msgstr ""
+msgstr "Jogosultságok megváltoztatása"
 
 msgid "Change the IP address of your computer"
 msgstr "Számítógéped IP címének módosítása"
@@ -2019,19 +2019,19 @@ msgid "Charging Battery"
 msgstr "Akkumulátor töltése"
 
 msgid "Check IP Command"
-msgstr ""
+msgstr "IP parancs ellenőrzése"
 
 msgid "Check IP Path"
-msgstr ""
+msgstr "IP útvonal ellenőrzése"
 
 msgid "Check IP Server"
-msgstr ""
+msgstr "IP szerver ellenőrzése"
 
 msgid "Check IP using HTTPS"
-msgstr ""
+msgstr "HTTPS használatának ellenőrzése"
 
 msgid "Check Interval"
-msgstr ""
+msgstr "Ellenőrzési időköz"
 
 msgid "Check System|General Setup before initializing"
 msgstr "Rendszerellenőrzés|Általános beállítások inicializálás előtt"
@@ -2110,10 +2110,10 @@ msgid "Clone Configuration"
 msgstr "Konfiguráció másolása"
 
 msgid "Clones"
-msgstr ""
+msgstr "Klónok"
 
 msgid "Close"
-msgstr ""
+msgstr "Bezár"
 
 msgid "Collecting initial data, please wait..."
 msgstr "Adatok gyűjtése folyamatban, kérem várjon..."
@@ -2180,6 +2180,10 @@ msgid ""
 "year fields match the current time, and when at least one of the two day "
 "fields (day of month, or day of week) matches the current time."
 msgstr ""
+"Az ütemező akkor hajtja végre a parancsokat, ha a perc, óra és az adott "
+"hónap értéke egyezik az aktális idővel és legalább egy a megadott kép nap "
+"mező egyezése közül (adott nap a hónapban vagy a hét adott napja) is "
+"bekövetkezik."
 
 msgid "Comment"
 msgstr "Megjegyzés"
@@ -2209,109 +2213,109 @@ msgid "Compression"
 msgstr "Tömörítés"
 
 msgid "Compression Ratio"
-msgstr ""
+msgstr "Tömörítés mértéke"
 
 msgid "Compression level 1 - best compression ratio"
-msgstr ""
+msgstr "1-es szintű tömörítés - legerősebb tömörítési arány"
 
 msgid "Compression level 1 - fastest compression"
-msgstr ""
+msgstr "1-es szintű tömörítés - leggyorsabb tömörítés"
 
 msgid "Compression level 10"
-msgstr ""
+msgstr "10-es szintű tömörítés"
 
 msgid "Compression level 100"
-msgstr ""
+msgstr "100-as szintű tömörítés"
 
 msgid "Compression level 1000 - fastest compression"
-msgstr ""
+msgstr "1000-es szintű tömörítés - leggyorsabb"
 
 msgid "Compression level 11"
-msgstr ""
+msgstr "11-es szintű tömörítés"
 
 msgid "Compression level 12"
-msgstr ""
+msgstr "12-es szintű tömörítés"
 
 msgid "Compression level 13"
-msgstr ""
+msgstr "13-as szintű tömörítés"
 
 msgid "Compression level 14"
-msgstr ""
+msgstr "14-es szintű tömörítés"
 
 msgid "Compression level 15"
-msgstr ""
+msgstr "15-ös szintű tömörítés"
 
 msgid "Compression level 16"
-msgstr ""
+msgstr "16-os szintű tömörítés"
 
 msgid "Compression level 17"
-msgstr ""
+msgstr "17-es szintű tömörítés"
 
 msgid "Compression level 18"
-msgstr ""
+msgstr "18-as szintű tömörítés"
 
 msgid "Compression level 19 - best compression ratio"
-msgstr ""
+msgstr "19-as szintű tömörítés - legjobb tömörítési arány"
 
 msgid "Compression level 2"
-msgstr ""
+msgstr "2-es szintű tömörítés"
 
 msgid "Compression level 20"
-msgstr ""
+msgstr "20-as szintű tömörítés"
 
 msgid "Compression level 3"
-msgstr ""
+msgstr "3-as szintű tömörítés"
 
 msgid "Compression level 30"
-msgstr ""
+msgstr "30-as szintű tömörítés"
 
 msgid "Compression level 4"
-msgstr ""
+msgstr "4-es szintű tömörítés"
 
 msgid "Compression level 40"
-msgstr ""
+msgstr "40-es szintű tömörítés"
 
 msgid "Compression level 5"
-msgstr ""
+msgstr "5-ös szintű tömörítés"
 
 msgid "Compression level 50"
-msgstr ""
+msgstr "50-es szintű tömörítés"
 
 msgid "Compression level 500"
-msgstr ""
+msgstr "500-as szintű tömörítés"
 
 msgid "Compression level 6"
-msgstr ""
+msgstr "6-os szintű tömörítés"
 
 msgid "Compression level 60"
-msgstr ""
+msgstr "60-as szintű tömörítés"
 
 msgid "Compression level 7"
-msgstr ""
+msgstr "7-es szintű tömörítés"
 
 msgid "Compression level 70"
-msgstr ""
+msgstr "70-es szintű tömörítés"
 
 msgid "Compression level 8"
-msgstr ""
+msgstr "8-as szintű tömörítés"
 
 msgid "Compression level 80"
-msgstr ""
+msgstr "80-as szintű tömörítés"
 
 msgid "Compression level 9"
-msgstr ""
+msgstr "9-es szintű tömörítés"
 
 msgid "Compression level 9 - best compression ratio"
-msgstr ""
+msgstr "9-es szintű tömörítés - legjobb tömörítési arány"
 
 msgid "Compression level 90"
-msgstr ""
+msgstr "90-es szintű tömörítés"
 
 msgid "Configuration"
 msgstr "Beállítások"
 
 msgid "Configuration Folder"
-msgstr ""
+msgstr "Beállítási mappa"
 
 msgid ""
 "Configuration information about devices is different from physical devices. "
@@ -2410,7 +2414,7 @@ msgid "Controller Model"
 msgstr "Kontroller modell"
 
 msgid "Controller Name"
-msgstr ""
+msgstr "Vezérlő név"
 
 msgid "Controller TCP Port"
 msgstr "Kontroller IP port"
@@ -2467,6 +2471,10 @@ msgid ""
 "algorithm. Setting compression to 'On' uses the LZ4 compression algorithm if "
 "the feature flag lz4_compress is active, otherwise LZJB is used."
 msgstr ""
+"A tömörítés szabályozása történik itt. Az ajánlott tömörítés az LZ4. "
+"Amennyiben a tömörítési beállítás \"On\" (bekapcsolt) állapotban van és az "
+"lz4_compress tulajdonság is aktív, akkor az LZ4 tömörítés lesz használatban. "
+"Más esetben LZJB tömörítés lesz használva."
 
 msgid "Controls the dedup method."
 msgstr "Az egyszeresítés eljárását határozza meg."
@@ -15880,10 +15888,10 @@ msgid "visible"
 msgstr "látható"
 
 msgid "vlan0"
-msgstr ""
+msgstr "vlan0"
 
 msgid "was assigned to"
 msgstr ""
 
 msgid "yes"
-msgstr ""
+msgstr "igen"
