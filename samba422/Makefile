@@ -14,10 +14,6 @@ NO_LICENSES_INSTALL=		yes
 NO_LICENSES_DIALOGS=		yes
 LICENSE=			GPLv3+
 #LICENSE_FILE=			${WRKSRC}/COPYING
-CMOCKA_STAGEDIR=		${PORTSDIR}/sysutils/cmocka/work/stage
-TALLOC_STAGEDIR=		${PORTSDIR}/devel/talloc243/work/stage
-TEVENT_STAGEDIR=		${PORTSDIR}/devel/tevent017/work/stage
-TDB_STAGEDIR=			${PORTSDIR}/databases/tdb1413/work/stage
 
 USES=				cpe
 
@@ -206,6 +202,10 @@ BUILD_DEPENDS+=			libarchive>=3.1.2:archivers/libarchive
 RUN_DEPENDS+=			libarchive>=3.1.2:archivers/libarchive
 
 ### Bundled libraries
+CMOCKA_STAGEDIR=		${PORTSDIR}/sysutils/cmocka/work/stage
+TALLOC_STAGEDIR=		${PORTSDIR}/devel/talloc243/work/stage
+TEVENT_STAGEDIR=		${PORTSDIR}/devel/tevent017/work/stage
+TDB_STAGEDIR=			${PORTSDIR}/databases/tdb1413/work/stage
 SAMBA4_BUNDLED_CMOCKA?=		no
 SAMBA4_BUNDLED_TALLOC?=		no
 SAMBA4_BUNDLED_TEVENT?=		no
@@ -698,7 +698,7 @@ post-install: post-install-rm-junk post-install-fix-manpages
 # add cryptography cffi dns markdown
 	${CP} -Rpv ${PREFIX}/lib/python3.11/site-packages/cryptography ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages
 	${CP} -Rpv ${PREFIX}/lib/python3.11/site-packages/cffi ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages
-	${CP} -Rpv /usr/ports/devel/py-cffi/work-py311/stage/usr/local/lib/python3.11/site-packages/_cffi_backend.cpython-311.so ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages/
+	${CP} -Rpv ${PREFIX}/lib/python3.11/site-packages/_cffi_backend.cpython-311.so ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages
 	${CP} -Rpv ${PREFIX}/lib/python3.11/site-packages/dns ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages
 	${CP} -Rpv ${PREFIX}/lib/python3.11/site-packages/markdown ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages
 # external ports cmocka talloc tevent tdb
@@ -712,9 +712,9 @@ post-install: post-install-rm-junk post-install-fix-manpages
 	${CP} -Rpv ${TALLOC_STAGEDIR}${PREFIX}/lib/libtalloc.so.2 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libtalloc.so.2
 	${LN} -f -v -s libtalloc.so.2 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libtalloc.so
 
-	${CP} -Rpv ${TEVENT_STAGEDIR}${PREFIX}/lib/python3.11/site-packages/__pycache__ ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages/
-	${CP} -Rpv ${TEVENT_STAGEDIR}${PREFIX}/lib/python3.11/site-packages/_tevent.cpython-311.so ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages/
-	${CP} -Rpv ${TEVENT_STAGEDIR}${PREFIX}/lib/python3.11/site-packages/tevent.py ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages/
+	${CP} -Rpv ${TEVENT_STAGEDIR}${PREFIX}/lib/python3.11/site-packages/__pycache__ ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages
+	${CP} -Rpv ${TEVENT_STAGEDIR}${PREFIX}/lib/python3.11/site-packages/_tevent.cpython-311.so ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages
+	${CP} -Rpv ${TEVENT_STAGEDIR}${PREFIX}/lib/python3.11/site-packages/tevent.py ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages
 	${CP} -Rpv ${TEVENT_STAGEDIR}${PREFIX}/lib/libtevent.so.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/
 	${LN} -f -v -s libtevent.so.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libtevent.so
 
