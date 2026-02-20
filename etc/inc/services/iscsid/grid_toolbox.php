@@ -233,7 +233,7 @@ class grid_toolbox extends myt\grid_toolbox {
 			case 'SESSION':
 				switch($page_action):
 					case $sphere->get_script()->get_basename():
-						//	catch error code
+//						catch error code
 						$retval = filter_var($_SESSION[$sphere->get_script()->get_basename()],FILTER_VALIDATE_INT,['options' => ['default' => 0]]);
 						unset($_SESSION['submit'],$_SESSION[$sphere->get_script()->get_basename()]);
 						$savemsg = get_std_save_message($retval);
