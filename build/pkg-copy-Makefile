@@ -25,7 +25,7 @@ XZ_CMD = xz
 TAR = tar
 WRKSRC = /tmp/work-zone
 
-all: pkg-copy phpmyadmin php84-mods mariadb118 vbox py-wsdd minidlna python311 gettext opie openzfs
+all: pkg-copy phpmyadmin php84-mods mariadb118 vbox py-wsdd minidlna python311 gettext opie #openzfs
 pkg-copy:
 
 ### bash/Makefile
