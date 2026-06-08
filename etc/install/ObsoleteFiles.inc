@@ -223,6 +223,7 @@ usr/local/lib/libdcerpc-samr.so.0
 usr/local/lib/libdcerpc-server.so.0
 usr/local/lib/libdcerpc-server-core.so.0
 usr/local/lib/libndr.so.4
+usr/local/lib/libndr.so.6
 usr/local/lib/libndr-krb5pac.so.0
 usr/local/lib/libndr-nbt.so.0
 usr/local/lib/libndr-standard.so.0
