@@ -1,6 +1,6 @@
---- sys/conf/newvers.sh.orig	2025-08-28 22:17:57.004585000 +0200
-+++ sys/conf/newvers.sh	2025-08-28 22:23:33.000000000 +0200
-@@ -296,7 +296,7 @@
+--- sys/conf/newvers.sh.orig	2026-06-08 13:59:34.692682000 +0200
++++ sys/conf/newvers.sh	2026-06-08 14:18:43.000000000 +0200
+@@ -300,7 +300,7 @@
  	VERINFO="${VERSION}${svn}${git}${gitup}${hg} ${i}"
  	VERSTR="${VERINFO}\\n"
  else
