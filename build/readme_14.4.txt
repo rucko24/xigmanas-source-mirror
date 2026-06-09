@@ -80,6 +80,7 @@ BUILD 14.4.0.5.xxxxx
 ====================
 Changes:
 - Upgrade underlying OS to 14.4-RELEASE P5.
+- Upgrade bash to v5.3p12.
 - Upgrade open-vm-tools to v13.0.10.
 - Upgrade phpvirtualbox to 7.2-8.
 - Upgrade pecl-APCu to v5.1.28.
