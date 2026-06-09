@@ -1219,22 +1219,6 @@
 		<loglevel>info</loglevel>
 		<inotify/>
 	</minidlna>
-	<daap>
-		<!--
-		<enable/>
-		<servername>xxx</servername>
-		<alwaysscan/>
-		<skipfirst/>
-		<content></content>
-		<compdirs></compdirs>
-		<concatcomps/>
-		-->
-		<port>3689</port>
-		<rescaninterval>3600</rescaninterval>
-		<scantype>0</scantype>
-		<dbdir></dbdir>
-		<admin_pw>xigmanas</admin_pw>
-	</daap>
 	<bittorrent>
 		<!--
 		<enable/>
