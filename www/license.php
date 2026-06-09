@@ -146,10 +146,6 @@ $software = [
 		'A SMTP client with a sendmail compatible interface (<a href="https://marlam.de/msmtp/" target="_blank" rel="noreferrer">http://marlam.de/msmtp/</a>).',
 		'Copyright © 2004-2025 Martin Lambers and others. All Rights Reserved.'
 	]],
-	['mt-daapd',[
-		'Multithread daapd Apple iTunes server (<a href="http://www.fireflymediaserver.org" target="_blank" rel="noreferrer">http://www.fireflymediaserver.org</a>).',
-		'Copyright © 2003 Ron Pedde (<a href="mailto:ron@pedde.com">ron@pedde.com</a>). All Rights Reserved.'
-	]],
 	['Netatalk',[
 		'Netatalk is a freely-available Open Source AFP fileserver (<a href="http://netatalk.sourceforge.net" target="_blank" rel="noreferrer">http://netatalk.sourceforge.net</a>).',
 		'Copyright © 1990,1996 Regents of The University of Michigan. All Rights Reserved.'
