@@ -44,8 +44,6 @@ $samba_logfilename = rc_getenv_ex('samba_logfilename','samba.log');
 $samba_logfile = sprintf('%s/%s',$samba_logdir,$samba_logfilename);
 $minidlna_logdir = rc_getenv_ex('minidlna_logdir',"{$g['varlog_path']}/minidlna");
 $minidlna_logfile = "{$minidlna_logdir}/minidlna.log";
-$mtdaapd_logdir = rc_getenv_ex('mtdaapd_logdir',"{$g['varlog_path']}/mt-daapd");
-$mtdaapd_logfile = "{$mtdaapd_logdir}/mt-daapd.log";
 
 $proftpd_modban_logfile = rc_getenv_ex('proftpd_modban_banlog',"{$g['varlog_path']}/proftpd/ban.log");
 //	the log configuration
@@ -63,7 +61,8 @@ $loginfo = [
 			['title' => gtext('Date & Time'),'width' => '15%','hdrclass' => 'lhell','class' => 'lcell','param' => 'style="white-space: nowrap;"','pmid' => 'timestamp'],
 			['title' => gtext('Host'),'width' => '10%','hdrclass' => 'lhell','class' => 'lcell','param' => 'style="white-space: nowrap;"','pmid' => 'hostname'],
 			['title' => gtext('Event'),'width' => '75%','hdrclass' => 'lhebl','class' => 'lcebl','param' => '','pmid' => 'msg']
-		]],
+		]
+	],
 	[
 		'visible' => true,
 		'desc' => gtext('SSH'),
@@ -77,7 +76,8 @@ $loginfo = [
 			['title' => gtext('Date & Time'),'width' => '15%','hdrclass' => 'lhell','class' => 'lcell','param' => 'style="white-space: nowrap;"','pmid' => 'timestamp'],
 			['title' => gtext('Host'),'width' => '10%','hdrclass' => 'lhell','class' => 'lcell','param' => 'style="white-space: nowrap;"','pmid' => 'hostname'],
 			['title' => gtext('Event'),'width' => '75%','hdrclass' => 'lhebl','class' => 'lcebl','param' => '','pmid' => 'msg']
-		]],
+		]
+	],
 	[
 		'visible' => true,
 		'desc' => gtext('Daemon'),
@@ -91,7 +91,8 @@ $loginfo = [
 			['title' => gtext('Date & Time'),'width' => '15%','hdrclass' => 'lhell','class' => 'lcell','param' => 'style="white-space: nowrap;"','pmid' => 'timestamp'],
 			['title' => gtext('Host'),'width' => '10%','hdrclass' => 'lhell','class' => 'lcell','param' => 'style="white-space: nowrap;"','pmid' => 'hostname'],
 			['title' => gtext('Event'),'width' => '75%','hdrclass' => 'lhebl','class' => 'lcebl','param' => '','pmid' => 'msg']
-		]],
+		]
+	],
 	[
 		'visible' => true,
 		'desc' => gtext('FTP'),
@@ -105,7 +106,8 @@ $loginfo = [
 			['title' => gtext('Date & Time'),'width' => '15%','hdrclass' => 'lhell','class' => 'lcell','param' => 'style="white-space: nowrap;"','pmid' => 'timestamp'],
 			['title' => gtext('Host'),'width' => '10%','hdrclass' => 'lhell','class' => 'lcell','param' => 'style="white-space: nowrap;"','pmid' => 'hostname'],
 			['title' => gtext('Event'),'width' => '75%','hdrclass' => 'lhebl','class' => 'lcebl','param' => '','pmid' => 'msg']
-		]],
+		]
+	],
 	[
 		'visible' => isset($config['ftpd']['mod_ban']['enable']),
 		'desc' => gtext('FTP - Ban Module'),
@@ -117,7 +119,8 @@ $loginfo = [
 		'columns' => [
 			['title' => gtext('Date & Time'),'width' => '15%','hdrclass' => 'lhell','class' => 'lcell','param' => 'style="white-space: nowrap;"','pmid' => 'timestamp'],
 			['title' => gtext('Event'),'width' => '85%','hdrclass' => 'lhebl','class' => 'lcebl','param' => '','pmid' => 'msg']
-		]],
+		]
+	],
 	[
 		'visible' => true,
 		'desc' => gtext('FTP - File Transfer'),
@@ -133,7 +136,8 @@ $loginfo = [
 //			['title' => gtext('File'),'hdrclass' => 'lhell','class' => 'lcell','param' => '','pmid' => 'filename'],
 //			['title' => gtext('Filesize'),'hdrclass' => 'lhell','class' => 'lcell','param' => '','pmid' => 'filesize'],
 			['title' => gtext('Event'),'width' => '65%','hdrclass' => 'lhebl','class' => 'lcebl','param' => '','pmid' => 'msg']
-		]],
+		]
+	],
 	[
 		'visible' => true,
 		'desc' => gtext('S.M.A.R.T.'),
@@ -147,7 +151,8 @@ $loginfo = [
 			['title' => gtext('Date & Time'),'width' => '15%','hdrclass' => 'lhell','class' => 'lcell','param' => 'style="white-space: nowrap;"','pmid' => 'timestamp'],
 			['title' => gtext('Host'),'width' => '10%','hdrclass' => 'lhell','class' => 'lcell','param' => 'style="white-space: nowrap;"','pmid' => 'hostname'],
 			['title' => gtext('Event'),'width' => '75%','hdrclass' => 'lhebl','class' => 'lcebl','param' => '','pmid' => 'msg']
-		]],
+		]
+	],
 	[
 		'visible' => true,
 		'desc' => gtext('SMB'),
@@ -158,7 +163,8 @@ $loginfo = [
 		'test.rfc5424' => false,
 		'columns' => [
 			['title' => gtext('Event'),'width' => '100%','hdrclass' => 'lhebl','class' => 'lcebl','param' => '','pmid' => 'msg']
-		]],
+		]
+	],
 	[
 		'visible' => true,
 		'desc' => gtext('RSYNC - Server'),
@@ -172,7 +178,8 @@ $loginfo = [
 			['title' => gtext('Date & Time'),'width' => '15%','hdrclass' => 'lhell','class' => 'lcell','param' => 'style="white-space: nowrap;"','pmid' => 'timestamp'],
 			['title' => gtext('Host'),'width' => '10%','hdrclass' => 'lhell','class' => 'lcell','param' => 'style="white-space: nowrap;"','pmid' => 'hostname'],
 			['title' => gtext('Event'),'width' => '75%','hdrclass' => 'lhebl','class' => 'lcebl','param' => '','pmid' => 'msg']
-		]],
+		]
+	],
 	[
 		'visible' => true,
 		'desc' => gtext('RSYNC - Client'),
@@ -183,7 +190,8 @@ $loginfo = [
 		'test.rfc5424' => false,
 		'columns' => [
 			['title' => gtext('Event'),'width' => '100%','hdrclass' => 'lhebl','class' => 'lcebl','param' => '','pmid' => 'msg']
-		]],
+		]
+	],
 	[
 		'visible' => true,
 		'desc' => gtext('RSYNC - Local'),
@@ -194,7 +202,8 @@ $loginfo = [
 		'test.rfc5424' => false,
 		'columns' => [
 			['title' => gtext('Event'),'width' => '100%','hdrclass' => 'lhebl','class' => 'lcebl','param' => '','pmid' => 'msg']
-		]],
+		]
+	],
 	[
 		'visible' => true,
 		'desc' => gtext('UPnP/DLNA - MiniDLNA'),
@@ -207,19 +216,8 @@ $loginfo = [
 			['title' => gtext('Date & Time'),'width' => '15%','hdrclass' => 'lhell','class' => 'lcell','param' => 'style="white-space: nowrap;"','pmid' => 'timestamp'],
 			['title' => gtext('Who'),'width' => '10%','hdrclass' => 'lhell','class' => 'lcell','param' => 'style="white-space: nowrap;"','pmid' => 'who'],
 			['title' => gtext('Event'),'width' => '75%','hdrclass' => 'lhebl','class' => 'lcebl','param' => '','pmid' => 'msg']
-		]],
-	[
-		'visible' => true,
-		'desc' => gtext('iTunes/DAAP'),
-		'logfile' => $mtdaapd_logfile,
-		'filename' => 'mt-daapd.log',
-		'type' => 'plain',
-		'pattern' => '/^(?<timestamp>\S+\s+\S+)\s+\S+:\s+(?<msg>.*)$/',
-		'test.rfc5424' => false,
-		'columns' => [
-			['title' => gtext('Date & Time'),'width' => '15%','hdrclass' => 'lhell','class' => 'lcell','param' => 'style="white-space: nowrap;"','pmid' => 'timestamp'],
-			['title' => gtext('Event'),'width' => '85%','hdrclass' => 'lhebl','class' => 'lcebl','param' => '','pmid' => 'msg']
-		]],
+		]
+	]
 ];
 function log_get_contents($logfile,$type) {
 	global $config;
