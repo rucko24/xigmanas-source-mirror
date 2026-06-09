@@ -48,7 +48,6 @@ function services_is_port_used($port,string $except = '') {
 	$regex_port = '/^(?:6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5][0-9]{4}|[1-9][0-9]{0,3}|0)$/';
 //	services and their default ports
 	$services = [
-		['name' => 'daap','default_port' => '3689'],
 		['name' => 'websrv','default_port' => ''],
 		['name' => 'minidlna','default_port' => '8200'],
 		['name' => 'rsyncd','default_port' => '873'],
