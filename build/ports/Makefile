@@ -13,7 +13,6 @@
     SUBDIR += dmidecode
     SUBDIR += e2fsprogs-core
     SUBDIR += fdisk
-    SUBDIR += firefly
     SUBDIR += fusefs-exfat
     SUBDIR += fusefs-ext2
     SUBDIR += fusefs-ntfs
