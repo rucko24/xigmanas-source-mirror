@@ -7,7 +7,8 @@ Changes:
 - Upgrade e2fsprogs to v1.47.4.
 - Upgrade iperf3 to v3.21.
 - Upgrade open-vm-tools to v13.0.10.
-- Upgrade phpvirtualbox to 7.2-8.
+- Upgrade virtualbox-ose to 7.2.8.
+- Upgrade phpvirtualbox to 7.2-3.
 - Upgrade microcode amd to v20251202.
 - Upgrade microcode intel to v20260512.
 - Upgrade nano to v9.0.
