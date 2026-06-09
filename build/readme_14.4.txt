@@ -94,6 +94,7 @@ Changes:
 - Upgrade nut to v2026.05.25.
 - Upgrade pecl-APCu to v5.1.28.
 - Upgrade php8 to v8.4.22.
+- Upgrade proftpd to v1.3.9b.
 - Upgrade zoneinfo to v2026b.
 - 
 
