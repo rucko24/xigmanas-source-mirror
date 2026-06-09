@@ -10,6 +10,7 @@ Changes:
 - Upgrade phpvirtualbox to 7.2-8.
 - Upgrade microcode amd to v20251202.
 - Upgrade microcode intel to v20260512.
+- Upgrade nano to v9.0.
 - Upgrade pecl-APCu to v5.1.28.
 - Upgrade php8 to v8.4.22.
 -

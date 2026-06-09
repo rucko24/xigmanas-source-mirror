@@ -1,5 +1,5 @@
 PORTNAME=		nano
-PORTVERSION=	8.7
+PORTVERSION=	9.0
 PORTREVISION?=  0
 CATEGORIES=	editors
 COMMENT=	Nano's ANOther editor, an enhanced free Pico clone
