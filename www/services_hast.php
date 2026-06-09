@@ -173,8 +173,6 @@ if($_POST):
 			$config['unison']['enable'] = false;
 			arr::make_branch($config,'iscsitarget');
 			$config['iscsitarget']['enable'] = false;
-			arr::make_branch($config,'daap');
-			$config['daap']['enable'] = false;
 			arr::make_branch($config,'dynamicdns');
 			$config['dynamicdns']['enable'] = false;
 			arr::make_branch($config,'snmpd');
@@ -204,7 +202,6 @@ if($_POST):
 			$retval |= rc_update_service('rsyncd');
 			$retval |= rc_update_service('unison');
 			$retval |= rc_update_service('iscsi_target');
-			$retval |= rc_update_service('mt-daapd');
 			$retval |= rc_update_service('inadyn');
 			$retval |= rc_update_service('bsnmpd');
 			$retval |= rc_update_service('nut');
