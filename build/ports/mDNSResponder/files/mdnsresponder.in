@@ -4,7 +4,7 @@
 # Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
 # All rights reserved.
 #
-# mdnsresponder deamon
+# mdnsresponder daemon
 #
 # Service types definition: http://www.dns-sd.org/ServiceTypes.html
 
@@ -19,7 +19,7 @@
 . /etc/util.subr
 
 name="mdnsresponder"
-desc="mdnsresponder deamon"
+desc="mdnsresponder daemon"
 rcvar=mdnsresponder_enable
 
 load_rc_config "${name}"
