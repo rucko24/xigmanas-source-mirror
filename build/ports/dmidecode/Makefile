@@ -1,5 +1,5 @@
 PORTNAME=	dmidecode
-PORTVERSION=	3.5
+PORTVERSION=	3.7
 PORTREVISION?=	0
 CATEGORIES=	sysutils
 MASTER_SITES=	SAVANNAH
@@ -21,8 +21,8 @@ EXTRACT_SUFX= .tar.xz
 do-install:
 # XigmaNAS® Install
 	@echo "Start install to ${XIGMANAS_ROOTFS}"
-	@${INSTALL_PROGRAM} -v ${WRKSRC}/dmidecode ${XIGMANAS_ROOTFS}/usr/local/sbin
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/biosdecode ${XIGMANAS_ROOTFS}/usr/local/sbin
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/dmidecode ${XIGMANAS_ROOTFS}/usr/local/sbin
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/ownership ${XIGMANAS_ROOTFS}/usr/local/sbin
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/vpddecode ${XIGMANAS_ROOTFS}/usr/local/sbin
 # XigmaNAS® end install

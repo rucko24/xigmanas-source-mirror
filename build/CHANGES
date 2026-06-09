@@ -3,6 +3,7 @@ XigmaNAS® 14.4.0.5 - Ingsley
 Changes:
 - Upgrade underlying OS to 14.4-RELEASE P5.
 - Upgrade bash to v5.3p12.
+- Upgrade dmidecode to v3.7.
 - Upgrade open-vm-tools to v13.0.10.
 - Upgrade phpvirtualbox to 7.2-8.
 - Upgrade microcode amd to v20251202.
