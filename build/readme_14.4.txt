@@ -83,6 +83,8 @@ Changes:
 - Upgrade bash to v5.3p12.
 - Upgrade open-vm-tools to v13.0.10.
 - Upgrade phpvirtualbox to 7.2-8.
+- Upgrade microcode amd to v20251202.
+- Upgrade microcode intel to v20260512.
 - Upgrade pecl-APCu to v5.1.28.
 - Upgrade php8 to v8.4.22.
 - 
