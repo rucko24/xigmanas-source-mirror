@@ -12,8 +12,8 @@ CONFLICTS=	nut-[0-9]*
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	networkupstools
-GH_TAGNAME=	41daedfab
-NUT_COMMIT_DATE=	2025.11.17
+GH_TAGNAME=	db633d1bd
+NUT_COMMIT_DATE=	2026.05.25
 
 GNU_CONFIGURE=	yes
 USES=		autoreconf:build gmake libtool pkgconfig python:build
@@ -73,6 +73,7 @@ LIB_DEPENDS+=   libneon.so:www/neon
 LIB_DEPENDS+=	libpowerman.so:sysutils/powerman
 LIB_DEPENDS+=	libmodbus.so:comms/libmodbus
 LIB_DEPENDS+=	libfreeipmi.so:sysutils/freeipmi
+USB_LIB_DEPENDS=libgio-2.0.so:devel/glib20
 CONFIGURE_ARGS+=--with-ipmi \
 		--with-freeipmi
 
