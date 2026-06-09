@@ -4,7 +4,7 @@
 # Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
 # All rights reserved.
 #
-# Deamon iscsi_initiator
+# Daemon iscsi_initiator
 
 # PROVIDE: iscsi_initiator
 # REQUIRE: NETWORKING netwait
@@ -17,7 +17,7 @@
 . /etc/configxml.subr
 
 name="iscsi_initiator"
-desc="Deamon iscsi_initiator"
+desc="Daemon iscsi_initiator"
 rcvar=iscsi_initiator_enable
 
 load_rc_config "$name"
