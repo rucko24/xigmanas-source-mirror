@@ -89,6 +89,7 @@ Changes:
 - Upgrade microcode amd to v20251202.
 - Upgrade microcode intel to v20260512.
 - Upgrade nano to v9.0.
+- Upgrade netatalk to v4.4.3.
 - Upgrade pecl-APCu to v5.1.28.
 - Upgrade php8 to v8.4.22.
 - 

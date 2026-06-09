@@ -1,5 +1,5 @@
 PORTNAME=	netatalk
-PORTVERSION=	4.3.2
+PORTVERSION=	4.4.3
 PORTREVISION=	0
 CATEGORIES=	net
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/netatalk-${PORTVERSION:S/./-/g}/
@@ -23,7 +23,6 @@ USES=		bdb:18 gettext iconv:wchar_t meson perl5 pkgconfig shebangfix ssl tar:xz
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	netatalk
 #INSTALL_TARGET=install-strip
-CPE_VENDOR=	netatalk_project
 
 MESON_ARGS=		-Dwith-libgcrypt-path=${LOCALBASE} \
 			-Dwith-bdb-path=${LOCALBASE} \
