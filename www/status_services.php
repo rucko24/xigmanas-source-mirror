@@ -62,7 +62,6 @@ function status_services_sphere() {
 		$sphere->grid[] = ['name' => gettext('iSCSI Target CTL'),'link' => 'services_ctl.php','config' => 'ctld','scriptname' => 'ctld'];
 		$sphere->grid[] = ['name' => gettext('iSCSI Target ISTGT'),'link' => 'services_iscsitarget.php','config' => 'iscsitarget','scriptname' => 'iscsi_target'];
 		$sphere->grid[] = ['name' => gettext('DLNA/UPnP MiniDLNA'),'link' => 'services_minidlna.php','config' => 'minidlna','scriptname' => 'minidlna'];
-		$sphere->grid[] = ['name' => gettext('iTunes/DAAP'),'link' => 'services_daap.php','config' => 'daap','scriptname' => 'mt-daapd'];
 		$sphere->grid[] = ['name' => gettext('Dynamic DNS'),'link' => 'services_inadyn.php','config' => 'inadyn','scriptname' => 'inadyn'];
 		$sphere->grid[] = ['name' => gettext('SNMP'),'link' => 'services_snmp.php','config' => 'snmpd','scriptname' => 'bsnmpd'];
 		$sphere->grid[] = ['name' => gettext('UPS'),'link' => 'services_ups.php','config' => 'ups','scriptname' => $ups_script];
