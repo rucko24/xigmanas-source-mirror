@@ -50,12 +50,10 @@ function remove_logs() {
 
 	$logs = [
 		'minidlna_logfile' => $g['varlog_path'] . '/minidlna/minidlna.log',
-		'mtdaapd_logfile' => $g['varlog_path'] . '/mt-daapd/mt-daapd.log',
 		'rsync_client_logfile' => $g['varlog_path'] . '/rsync_client.log',
 		'rsync_local_logfile' => $g['varlog_path'] . '/rsync_local.log',
 	];
 	rc_stop_service('minidlnad');
-	rc_stop_service('mt-daapd');
 	foreach($logs as $key => $val):
 		$file = rc_getenv_ex($key,$val);
 		if(!empty($file) && file_exists($file)):
