@@ -68,7 +68,7 @@ class document extends DOMDocument {
 		return array_pop(array: $this->stack);
 	}
 	public function last() {
-		return $this->stack[array_key_last(array: $this->stack)];
+		return array_last($this->stack);
 	}
 	public function reset_hooks() {
 		$this->hook_stack = [];
