@@ -74,7 +74,7 @@ class filechooser {
 //		Check if file exists.
 		if(!file_exists($path)):
 			print_info_box("File not found $path");
-			if(substr($path,0,1) == '/'):
+			if(substr(string: $path,start: 0,length: 1) == '/'):
 				$path = $this->get_valid_parent_dir($path);
 			else:
 				$path = '/mnt';
@@ -86,7 +86,7 @@ class filechooser {
 			$dir = dirname($dir) . '/';
 		endif;
 //		Check if directory string end with '/'. Add it if necessary.
-		if('/' !== substr(strrev($dir),0,1)):
+		if(substr(string: $dir,start: -1) !== '/'):
 			$dir .= '/';
 		endif;
 //		Get sorting vars from URL, if nothing is set, sort by N [file Name].
@@ -126,7 +126,7 @@ EOD;
 		if(!function_exists('mime_content_type')):
 			function mime_content_type($file) {
 				$file = escapeshellarg($file);
-				$type = `file -bi $file`;
+				$type = shell_exec("file -bi {$file}");
 				$expl = explode(';',$type);
 				return $expl[0];
 			}
@@ -138,16 +138,18 @@ EOD;
 		$fileInfo = [];
 		$content = $this->get_content($dir);
 		foreach($content as $file):
-			if(is_dir("{$dir}/{$file}")): // is a folder
+			if(is_dir("{$dir}/{$file}")):
+//				is a folder
 //				store elements of folder in sub array
 				$folderInfo['name']	= $file;
 				$folderInfo['mtime'] = @filemtime("{$dir}/{$file}");
-				$folderInfo['type'] = gtext("Directory");
+				$folderInfo['type'] = gtext('Directory');
 //				calc folder size ?
 				$folderInfo['size'] = $this->calc_folder_sizes ? $this->get_folder_size("{$dir}/{$file}") : '-';
 				$folderInfo['rowType'] = 'fr';
 				$folderArray[] = $folderInfo;
-			else: // is a file
+			else:
+//				is a file
 //				store elements of file in sub array
 				$fileInfo['name'] = $file;
 				$fileInfo['mtime'] = @filemtime("{$dir}/{$file}");
@@ -170,20 +172,18 @@ EOD;
 				$folders[] = $file;
 			elseif(is_file("{$dir}/{$file}")):
 				$files[] = $file;
-			elseif(preg_match('#^/dev/zvol/#',"{$dir}") && strpos($file,'@') == false):
-				/* pickup ZFS volume but not snapshot */
+			elseif(preg_match('#^/dev/zvol/#',"{$dir}") && strpos(haystack: $file,needle: '@') == false):
+//				pickup ZFS volume but not snapshot
 				$S_IFCHR = 0020000;
 				$st = stat("{$dir}/{$file}");
-				if ($st != false && $st['mode'] & $S_IFCHR):
+				if($st != false && $st['mode'] & $S_IFCHR):
 					$files[] = $file;
 				endif;
 			endif;
 		endwhile;
 		@closedir($handle);
-
 		$folders = $this->filter_content($folders,$this->filter_show_folders,$this->filter_hide_folders);
 		$files = $this->filter_content($files,$this->filter_show_files,$this->filter_hide_files);
-
 		return array_merge($folders,$files);
 	}
 	function filter_content($arr,$allow,$hide) {
@@ -212,11 +212,12 @@ EOD;
 		endif;
 	}
 	function get_valid_parent_dir($path) {
-		if(strcmp($path,'/') == 0): // Is it already root of filesystem?
+//		Is it already root of filesystem?
+		if(strcmp($path,'/') == 0):
 			return false;
 		endif;
-		$expl = explode('/',substr($path,0,-1));
-		$path = substr($path,0,-strlen($expl[(sizeof($expl)-1)] . '/'));
+		$expl = explode('/',substr(string: $path,start: 0,length: -1));
+		$path = substr(string: $path,start: 0,length: -strlen(string: $expl[(sizeof($expl)-1)] . '/'));
 		if(!(file_exists($path) && is_dir($path))):
 			$path = $this->get_valid_parent_dir($path);
 		endif;
@@ -226,13 +227,18 @@ EOD;
 		$size = 0;
 		$handle = opendir($dir);
 		if($handle):
-			while(false !== ($file = readdir($handle))):
-				if($file != '.' && $file != '..'):
-					if(is_dir("{$dir}/{$file}")):
-						$size += $this->get_folder_size("{$dir}/{$file}");
-					else:
-						$size += @get_filesize("{$dir}/{$file}");
+			while(true):
+				$file = readdir($handle);
+				if($file !== false):
+					if($file != '.' && $file != '..'):
+						if(is_dir("{$dir}/{$file}")):
+							$size += $this->get_folder_size("{$dir}/{$file}");
+						else:
+							$size += @get_filesize("{$dir}/{$file}");
+						endif;
 					endif;
+				else:
+					break;
 				endif;
 			endwhile;
 		endif;
@@ -253,7 +259,8 @@ EOD;
 				krsort($sortedFiles);
 				$result = array_merge($sortedFiles,$sortedFolders);
 			endif;
-		else: // sort folders and files together
+		else:
+//			sort folders and files together
 			$files = array_merge($files['folders'],$files['files']);
 			$result = $this->order_by_column($files,'1');
 //			sort files depending on sort order
@@ -264,7 +271,6 @@ EOD;
 	function order_by_column($input,$type) {
 		$column = $this->sort_mode;
 		$result = [];
-
 //		available sort columns
 		$columnList = [
 			'N' => 'name',
@@ -281,9 +287,10 @@ EOD;
 //			natural sort - make array keys lowercase
 			if($this->use_natural_sort):
 				$col = $value[$columnList[$column]];
-				$res = strtolower($col) . '.' . $rowcount . $type;
+				$res = strtolower(string: $col) . '.' . $rowcount . $type;
 				$result[$res] = $value;
-			else: // regular sort - uppercase values get sorted on top
+			else:
+//				regular sort - uppercase values get sorted on top
 				$res = $value[$columnList[$column]] . '.' . $rowcount . $type;
 				$result[$res] = $value;
 			endif;
@@ -296,7 +303,6 @@ EOD;
 //		$ret .= '<tr>';
 //		$ret .= '<td class="filelist">';
 		$ret .= '<div id="area_data_frame">';
-
 		$ret .= '<table class="area_data_selection">';
 		$ret .= '<colgroup>';
 		$ret .= '<col style="width:5%">';
@@ -326,7 +332,6 @@ EOD;
 		$ret .= ($this->show_footer) ? $this->row('footer') : '';
 		$ret .= '</tfoot>';
 		$ret .= '</table>';
-
 		$ret .= '</div>';
 //		$ret .= '</td>';
 //		$ret .= '</tr>';
