@@ -132,8 +132,6 @@ class config_xml_reader {
 		endif;
 	}
 	public function __destruct() {
-//		Destroy parser
-		xml_parser_free($this->parser);
 //		Free memory
 		unset($this->parser);
 	}
