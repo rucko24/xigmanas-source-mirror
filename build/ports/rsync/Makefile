@@ -1,6 +1,6 @@
 PORTNAME=		rsync
-PORTVERSION=	3.4.1
-PORTREVISION=	3
+PORTVERSION=	3.4.4
+PORTREVISION=	0
 CATEGORIES=		net
 MAINTAINER=		zoon01@xigmanas.com
 COMMENT=		A network file distribution/sync utility
