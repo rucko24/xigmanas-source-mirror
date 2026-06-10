@@ -43,7 +43,7 @@ use common\uuid;
 use gui\document;
 
 function get_sysctl_kern_vty() {
-	return trim(`/sbin/sysctl -n kern.vty`);
+	return trim(shell_exec('/sbin/sysctl -n kern.vty'));
 }
 function get_sphere_system_advanced() {
 	global $config;
