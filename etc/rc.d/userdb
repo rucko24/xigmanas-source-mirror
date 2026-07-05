@@ -22,6 +22,7 @@ load_rc_config "$name"
 userdb_group=${userdb_group:-"/etc/group"}
 userdb_passwd=${userdb_passwd:-"/etc/passwd"}
 userdb_masterpasswd=${userdb_masterpasswd:-"/etc/master.passwd"}
+userdb_roothomedir=${userdb_roothomedir:-"/root"}
 
 echo "Generating user database(s)."
 
@@ -79,12 +80,12 @@ cat /dev/null > ${userdb_passwd}
 
 #	create the /etc/master.passwd file
 /usr/local/bin/xml sel --template \
-	--value-of "concat('root:',//system/password,':0:0::0:0:Charlie &:/root:/bin/tcsh')" --nl \
-	--output 'toor:*:0:0::0:0:Bourne-again Superuser:/root:' --nl \
+	--value-of "concat('root:',//system/password,':0:0::0:0:Charlie &:${userdb_roothomedir}:/bin/tcsh')" --nl \
+	--output 'toor:*:0:0::0:0:Bourne-again Superuser:${userdb_roothomedir}:' --nl \
 	--if "string-length(//system/username) > 0 and //system/username != 'root' and not(contains(//system/username,' '))" \
-		--value-of "concat(//system/username,':',//system/password,':0:0::0:0:WebGUI Master:/root:/bin/tcsh')" --nl \
+		--value-of "concat(//system/username,':',//system/password,':0:0::0:0:WebGUI Master:${userdb_roothomedir}:/bin/tcsh')" --nl \
 	--break \
-	--output 'daemon:*:1:1::0:0:Owner of many system processes:/root:/usr/sbin/nologin' --nl \
+	--output 'daemon:*:1:1::0:0:Owner of many system processes:${userdb_roothomedir}:/usr/sbin/nologin' --nl \
 	--output 'operator:*:2:5::0:0:System &:/:/usr/sbin/nologin' --nl \
 	--output 'bin:*:3:7::0:0:Binaries Commands and Source:/:/usr/sbin/nologin' --nl \
 	--output 'tty:*:4:65533::0:0:Tty Sandbox:/:/usr/sbin/nologin' --nl \
