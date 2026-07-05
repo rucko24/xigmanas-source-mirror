@@ -123,9 +123,9 @@ cat /dev/null > ${userdb_passwd}
 #	-H 0 [read encrypted password from stdin]
 
 #	process system users
-_index=`configxml_get_count '//system/usermanagement/user'`
+_index=$( configxml_get_count '//system/usermanagement/user' )
 while [ ${_index} -gt 0 ]; do
-	_cmdarg=`/usr/local/bin/xml sel --template \
+	_cmdarg=$( /usr/local/bin/xml sel --template \
 		--match "//system/usermanagement/user[${_index}]" \
 			--var filteruser='.' \
 			--value-of "concat('-n ',name,' -u ',id,' -g ',primarygroup)" \
@@ -143,16 +143,16 @@ while [ ${_index} -gt 0 ]; do
 				--value-of "concat(' ',extraoptions)" \
 			--break \
 		--break \
-		${configxml_file} | /usr/local/bin/xml unesc`
+		${configxml_file} | /usr/local/bin/xml unesc )
 	eval "/usr/sbin/pw user add -q ${_cmdarg} > /dev/null"
 	_index=$(( ${_index} - 1 ))
 done
 
 #	process configured users
-_index=`configxml_get_count '//access/user'`
+_index=$( configxml_get_count '//access/user' )
 while [ ${_index} -gt 0 ]; do
 	if configxml_isset "//access/user[${_index}]/enable"; then
-		_cmdarg=`/usr/local/bin/xml sel --template \
+		_cmdarg=$( /usr/local/bin/xml sel --template \
 			--match "//access/user[${_index}]" \
 				--var filteruser='.' \
 				--value-of "concat('-n ',login,' -u ',id,' -g ',primarygroup,' -c \"',fullname,'\"')" \
@@ -183,8 +183,8 @@ while [ ${_index} -gt 0 ]; do
 					--output ' -H 0' \
 				--break \
 			--break \
-			${configxml_file} | /usr/local/bin/xml unesc`
-		_password=`configxml_get "//access/user[${_index}]/passwordsha"`
+			${configxml_file} | /usr/local/bin/xml unesc )
+		_password=$( configxml_get "//access/user[${_index}]/passwordsha" )
 		eval "(/bin/echo "'${_password}'") | /usr/sbin/pw user add -q ${_cmdarg} > /dev/null"
 	fi
 	_index=$(( ${_index} - 1 ))
